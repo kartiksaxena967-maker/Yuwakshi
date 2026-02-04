@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Yashi ❤️</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  background:linear-gradient(180deg,#ff6f91,#ffc2d1);
+  color:#fff;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:25px;
+}
+
+.card{
+  background:rgba(255,255,255,0.25);
+  backdrop-filter:blur(12px);
+  border-radius:26px;
+  padding:30px;
+  max-width:380px;
+  box-shadow:0 25px 45px rgba(0,0,0,0.3);
+}
+
+h1{
+  font-size:2.3em;
+  margin-bottom:10px;
+}
+
+p{
+  font-size:1.08em;
+  line-height:1.7;
+  margin:12px 0;
+}
+
+button{
+  margin-top:20px;
+  padding:12px 30px;
+  border:none;
+  border-radius:30px;
+  font-size:1em;
+  cursor:pointer;
+  background:#fff;
+  color:#ff4d6d;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.08);
+}
+
+.yes{
+  background:#ff4d6d;
+  color:#fff;
+}
+
+.hidden{ display:none; }
+
+/* Floating hearts */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  animation:floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:1;}
+  to{transform:translateY(-120vh);opacity:0;}
+}
+
+/* WhatsApp chat */
+.chat{
+  background:#ece5dd;
+  border-radius:18px;
+  padding:15px;
+  width:100%;
+  max-width:360px;
+  text-align:left;
+}
+
+.status{
+  font-size:13px;
+  color:#25d366;
+  text-align:center;
+  margin-bottom:10px;
+}
+
+.msg{
+  background:#dcf8c6;
+  color:#000;
+  padding:10px 14px;
+  border-radius:10px;
+  margin:8px 0;
+  width:fit-content;
+  max-width:90%;
+  animation:fadeIn 0.4s ease;
+}
+
+.reply{
+  background:#fff;
+  margin-left:auto;
+}
+
+.sender{
+  font-size:12px;
+  font-weight:600;
+  color:#075e54;
+  margin-bottom:4px;
+}
+
+.time{
+  font-size:10px;
+  color:#555;
+  text-align:right;
+  margin-top:4px;
+}
+
+.typing{
+  font-size:12px;
+  font-style:italic;
+  color:#555;
+  margin:8px 0;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(6px);}
+  to{opacity:1;transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Romantic music (starts on click) -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/audio/2023/03/16/audio_1f2dfe5c8b.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<section>
+  <div class="card">
+    <h1>Yashi ❤️</h1>
+    <p>Some people feel like a coincidence…<br>but you feel like destiny ✨</p>
+    <p>This isn’t just a page.<br>It’s my heart — honestly.</p>
+    <button onclick="startLove()">Begin 💖</button>
+  </div>
+</section>
+
+<!-- PAGE 2 -->
+<section id="p2" class="hidden">
+  <div class="card">
+    <p>
+      Somewhere between smiles,<br>
+      quiet moments,<br>
+      and late thoughts…<br>
+      I started choosing you 🌸
+    </p>
+  </div>
+</section>
+
+<!-- PAGE 3 -->
+<section id="p3" class="hidden">
+  <div class="card">
+    <h1>A promise 💌</h1>
+    <p>
+      I don’t promise perfection.<br>
+      I promise effort.<br>
+      To listen. To respect. To stay.
+    </p>
+  </div>
+</section>
+
+<!-- PAGE 4 -->
+<section id="p4" class="hidden">
+  <div class="card">
+    <h1>So here I am… 🥺</h1>
+    <p>With a nervous heart and honest feelings.</p>
+    <button class="yes" onclick="sayYes()">YES 💍</button>
+    <button onclick="runAway(this)">NO 🙈</button>
+  </div>
+</section>
+
+<!-- PAGE 5 (WhatsApp Ending) -->
+<section id="p5" class="hidden">
+  <div class="chat">
+    <div class="status">Kartik • online</div>
+    <div id="chat"></div>
+  </div>
+</section>
+
+<script>
+const music=document.getElementById("music");
+
+function startLove(){
+  music.volume=0.6;
+  music.play();
+  show("p2");
+  hearts();
+  setTimeout(()=>show("p3"),3500);
+  setTimeout(()=>show("p4"),7000);
+}
+
+function show(id){
+  document.getElementById(id).classList.remove("hidden");
+  window.scrollBy({top:window.innerHeight,behavior:"smooth"});
+}
+
+function runAway(btn){
+  btn.style.position="absolute";
+  btn.style.left=Math.random()*80+"%";
+  btn.style.top=Math.random()*80+"%";
+}
+
+function hearts(){
+  setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=Math.random()*20+18+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  },300);
+}
+
+function sayYes(){
+  show("p5");
+  startChat();
+}
+
+const messages=[
+  "Yashi…",
+  "I don’t know the perfect words.",
+  "But my heart has been choosing you every single day ❤️",
+  "Not for a moment.",
+  "Not for a phase.",
+  "But for always.",
+  "Will you stay with me? 💍"
+];
+
+function timeNow(){
+  const d=new Date();
+  return d.getHours()+":"+String(d.getMinutes()).padStart(2,"0");
+}
+
+function startChat(){
+  const chat=document.getElementById("chat");
+  let i=0;
+
+  const interval=setInterval(()=>{
+    if(i<messages.length){
+      const m=document.createElement("div");
+      m.className="msg";
+
+      const s=document.createElement("div");
+      s.className="sender";
+      s.innerText="Kartik";
+
+      const t=document.createElement("div");
+      t.innerText=messages[i];
+
+      const time=document.createElement("div");
+      time.className="time";
+      time.innerText=timeNow();
+
+      m.appendChild(s);
+      m.appendChild(t);
+      m.appendChild(time);
+      chat.appendChild(m);
+      i++;
+    }else{
+      clearInterval(interval);
+      typing(chat);
+    }
+  },1200);
+}
+
+function typing(chat){
+  const typing=document.createElement("div");
+  typing.className="typing";
+  typing.innerText="Yashi is typing…";
+  chat.appendChild(typing);
+
+  setTimeout(()=>{
+    typing.remove();
+
+    const reply=document.createElement("div");
+    reply.className="msg reply";
+
+    const s=document.createElement("div");
+    s.className="sender";
+    s.innerText="Yashi";
+
+    const t=document.createElement("div");
+    t.innerText="Yes… always ❤️🥹";
+
+    const time=document.createElement("div");
+    time.className="time";
+    time.innerText=timeNow();
+
+    reply.appendChild(s);
+    reply.appendChild(t);
+    reply.appendChild(time);
+    chat.appendChild(reply);
+  },3000);
+}
+</script>
+
+</body>
+</html>
