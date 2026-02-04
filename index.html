@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Yashi ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(180deg,#ff758c,#ff7eb3);
+  color:white;
+  overflow-x:hidden;
+  scroll-behavior: smooth;
+}
+
+section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:40px 20px;
+}
+
+.card{
+  background:rgba(255,255,255,0.2);
+  padding:35px;
+  border-radius:25px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.3);
+}
+
+h1,h2{margin-bottom:20px;}
+p{font-size:20px;line-height:1.6;}
+
+.buttons{
+  margin-top:25px;
+  display:flex;
+  gap:20px;
+  justify-content:center;
+}
+
+.yes{
+  padding:15px 35px;
+  font-size:22px;
+  background:#ff2d55;
+  border:none;
+  color:white;
+  border-radius:40px;
+  cursor:pointer;
+  animation:beat 1.2s infinite;
+}
+
+.no{
+  padding:15px 30px;
+  font-size:18px;
+  background:#555;
+  border:none;
+  color:white;
+  border-radius:40px;
+  cursor:pointer;
+  position:relative;
+}
+
+@keyframes beat{50%{transform:scale(1.1);}}
+
+/* WhatsApp Chat */
+.chat{
+  background:#ece5dd;
+  color:black;
+  border-radius:20px;
+  padding:20px;
+  max-width:420px;
+  margin:auto;
+  cursor:pointer;
+}
+
+.msg{
+  background:#dcf8c6;
+  padding:10px 15px;
+  border-radius:15px;
+  margin:10px 0;
+  display:none;
+  text-align:left;
+}
+
+/* Floating Hearts */
+.heart{
+  position:fixed;
+  bottom:-10px;
+  font-size:22px;
+  animation:float 6s linear infinite;
+}
+
+@keyframes float{
+  to{transform:translateY(-110vh);opacity:0;}
+}
+
+/* Fireworks */
+.spark{
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  animation:explode 1s linear forwards;
+}
+
+@keyframes explode{
+  to{
+    transform:translate(var(--x),var(--y));
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<!-- SECTION 1 -->
+<section>
+  <div class="card">
+    <h1>Yashi ❤️</h1>
+    <p>
+      This is not just a website.<br>
+      This is my heart, slowly opening,<br>
+      every feeling written only for you.
+    </p>
+    <button class="yes" onclick="startMusic()">▶️ Play Music</button>
+  </div>
+</section>
+
+<!-- SECTION 2 -->
+<section>
+  <div>
+    <h2>You are my favorite feeling 💕</h2>
+    <p>
+      In a world full of temporary people,<br>
+      you are the reason I believe in forever.<br><br>
+      My calm. My chaos. My home.
+    </p>
+  </div>
+</section>
+
+<!-- SECTION 3 -->
+<section>
+  <div class="card">
+    <h2>A promise from me ✨</h2>
+    <p>
+      I promise to choose you on good days,<br>
+      on hard days, and on days when nothing feels right.<br><br>
+      I promise honesty, effort, and love.
+    </p>
+  </div>
+</section>
+
+<!-- SECTION 4 -->
+<section>
+  <div class="card">
+    <h2>Yashi 💍</h2>
+    <p style="font-size:24px;">
+      Will you be mine,<br>
+      today, tomorrow,<br>
+      and for all the days after that?
+    </p>
+    <div class="buttons">
+      <button class="yes" onclick="yesClicked()">YES ❤️</button>
+      <button class="no" onmouseover="runNo(this)">NO 🙈</button>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5 -->
+<section>
+  <div>
+    <h2>One last thing… 💬</h2>
+    <div class="chat">
+      <div class="msg">Hey Yashi…</div>
+      <div class="msg">I don’t know what tomorrow brings.</div>
+      <div class="msg">But I know who I want beside me.</div>
+      <div class="msg">It’s you. Always you ❤️</div>
+      <div class="msg"><b>— Kartik</b></div>
+    </div>
+  </div>
+</section>
+
+<script>
+// MUSIC
+function startMusic(){
+  const m=document.getElementById("music");
+  m.volume=0;
+  m.play();
+  let v=0;
+  const fade=setInterval(()=>{
+    if(v<0.8){v+=0.02;m.volume=v;}
+    else clearInterval(fade);
+  },200);
+}
+
+// FUNNY NO BUTTON
+function runNo(btn){
+  btn.style.position="absolute";
+  btn.style.left=Math.random()*70+"vw";
+  btn.style.top=Math.random()*70+"vh";
+}
+
+// HEARTS
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),7000);
+},400);
+
+// FIREWORKS
+function fireworks(){
+  for(let i=0;i<40;i++){
+    const s=document.createElement("div");
+    s.className="spark";
+    s.style.left="50vw";
+    s.style.top="50vh";
+    s.style.setProperty("--x",(Math.random()*400-200)+"px");
+    s.style.setProperty("--y",(Math.random()*400-200)+"px");
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),1000);
+  }
+}
+
+// YES CLICK
+function yesClicked(){
+  fireworks();
+  alert("She said YES ❤️\nKartik is the happiest person alive!");
+  // Scroll to last section
+  document.querySelectorAll("section")[4].scrollIntoView({behavior:"smooth"});
+  // Start showing messages line by line
+  showMessages();
+}
+
+// WhatsApp LINE BY LINE ON CLICK
+function showMessages(){
+  const msgs=document.querySelectorAll(".msg");
+  let i=0;
+  const interval=setInterval(()=>{
+    if(i<msgs.length){
+      msgs[i].style.display="block";
+      i++;
+    } else clearInterval(interval);
+  },1600);
+}
+</script>
+
+</body>
+</html>
